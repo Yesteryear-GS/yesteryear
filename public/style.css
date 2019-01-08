@@ -21,6 +21,10 @@ form div {
   display: inline-block;
 }
 
+.block {
+  display: block;
+}
+
 .centered {
   text-align: center;
 }
