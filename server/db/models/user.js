@@ -28,40 +28,7 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   history: {
-    type: Sequelize.ARRAY() // Figure out how to handle array of array of objects
-  },
-  paymentInfo: {
-    creditCard: {
-      name: {
-        type: Sequelize.STRING,
-        validate: {
-          
-        }
-      },
-      number: {
-        type: Sequelize.INTEGER,
-        validate: {
-          isCreditCard: true
-        }
-      },
-      expirationMonth: {
-        type: Sequelize.INTEGER,
-        validate: {
-          min: 1,
-          max: 12
-        }
-      },
-      expirationYear: {
-        type: Sequelize.INTEGER
-      },
-      billingAddress: {
-        type: Sequelize.STRING
-      }
-    },
-    shippingAddress: {
-      type: Sequelize.STRING
-    }
-    
+    type: Sequelize.ARRAY(Sequelize.INTEGER) // Figure out how to handle array of array of objects
   }
 })
 

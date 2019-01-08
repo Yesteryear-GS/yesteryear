@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Product = db.define('product', {
   price: {
-    type: DataTypes.DECIMAL(10,2),
+    type: Sequelize.DECIMAL(10, 2),
     allowNull: false
   },
   imageUrl: {
