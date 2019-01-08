@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import Button from '@material-ui/core/Button'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -29,7 +31,9 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <Button variant="outlined" component={Link} to="/auth/google">
+        {displayName} with Google
+      </Button>
     </div>
   )
 }

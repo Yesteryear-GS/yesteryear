@@ -21,6 +21,10 @@ form div {
   display: inline-block;
 }
 
+.centered {
+  text-align: center;
+}
+
 #navbar {
   display: flex;
   justify-content: space-between;
