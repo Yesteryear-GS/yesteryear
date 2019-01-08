@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  margin: 0;
 }
 
 a {
@@ -18,4 +19,15 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 3vw;
+}
+
+#navbar > nav {
+  align-items: center;
+  display: flex;
 }
