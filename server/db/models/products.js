@@ -25,6 +25,9 @@ const Product = db.define('product', {
   },
   manufacturer: {
     type: Sequelize.STRING
+  },
+  categories: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
