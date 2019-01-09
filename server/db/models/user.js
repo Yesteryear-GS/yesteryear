@@ -26,6 +26,9 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  history: {
+    type: Sequelize.ARRAY(Sequelize.INTEGER) // Figure out how to handle array of array of objects
   }
 })
 
