@@ -5,6 +5,7 @@ const {Order, Product, User} = require('../server/db/models')
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
+
   await User.create({
     email: 'firstUser@email.com',
     password: 'firstPassword'
@@ -232,13 +233,11 @@ async function seed() {
   })
 
   await Order.create({
-    isCart: false,
-    content: [],
-    userId: 1
-  })
-  await Order.create({
     isCart: true,
-    content: [{id: 1, itemQuantity: 2, price: 1900}],
+    content: [
+      {id: 1, itemQuantity: 2, price: 1900},
+      {id: 3, itemQuantity: 1, price: 900}
+    ],
     userId: 1
   })
   await Order.create({

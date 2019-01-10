@@ -38,8 +38,8 @@ router.get('/:id/orders', async (req, res, next) => {
 
 router.get('/:id/cart', async (req, res, next) => {
   try {
-    const userId = req.params.id
-    const userCart = await Order.findAll({
+    const userId = req.session.passport.user
+    const userCart = await Order.findOne({
       where: {
         userId,
         isCart: true
