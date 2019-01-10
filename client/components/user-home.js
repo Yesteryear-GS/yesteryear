@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
+import AllProducts from './all-products'
 
 /**
  * COMPONENT
@@ -23,7 +24,9 @@ export const UserHome = props => {
             <Button className="buttons">Pop Culture</Button>
             <Button className="buttons">Toys/Games</Button>
           </div>
-          <div id="products">.</div>
+          <div id="products">
+            <AllProducts />
+          </div>
         </div>
       </div>
     </div>
