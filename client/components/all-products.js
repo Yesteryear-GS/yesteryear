@@ -22,14 +22,6 @@ class AllProducts extends React.Component {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setupProducts: () => {
-//       return dispatch(getProducts())
-//     }
-//   }
-// }
-
 const mapStateToProps = state => {
   return {products: state.product.products}
 }
