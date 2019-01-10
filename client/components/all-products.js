@@ -12,7 +12,6 @@ class AllProducts extends React.Component {
     this.props.getProducts()
   }
   render() {
-    console.log(this.props)
     return (
       <div>
         {this.props.products.map(product => {
