@@ -1,18 +1,19 @@
-import React from 'react'
+import React, {Component} from 'react'
 import store from '../store/index'
 import axios from 'axios'
 
-const Cart = async () => {
-  try {
+class Cart extends Component {
+  async componentDidMount() {
     const userId = store.getState().user.id
     const {data} = await axios.get('api/users/' + userId + '/orders')
+  }
+
+  render() {
     return (
       <>
         <h2>Cart</h2>
       </>
     )
-  } catch (err) {
-    console.error(err)
   }
 }
 
