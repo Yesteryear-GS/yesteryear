@@ -74,6 +74,11 @@ form div {
   width: 80%;
 }
 
+.images {
+  max-width: 200px;
+  max-height: 200px;
+}
+
 #menu {
   display: flex;
 }
