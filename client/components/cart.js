@@ -23,6 +23,7 @@ class Cart extends Component {
         <h2>Cart</h2>
         {this.state.cart.map(item => {
           // for each item in the cart, render an item view
+          // TODO: connect products to cart
         })}
       </>
     )
