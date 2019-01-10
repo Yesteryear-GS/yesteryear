@@ -35,3 +35,18 @@ router.get('/:id/orders', async (req, res, next) => {
     next(error)
   }
 })
+
+router.get('/:id/cart', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    const userCart = await Order.findOne({
+      where: {
+        userId,
+        isCart: true
+      }
+    })
+    res.json(userCart)
+  } catch (error) {
+    next(error)
+  }
+})

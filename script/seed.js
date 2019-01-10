@@ -5,11 +5,20 @@ const {Order, Product, User} = require('../server/db/models')
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
-  const firstUser = await User.create({
+
+  await User.create({
     email: 'firstUser@email.com',
     password: 'firstPassword'
   })
-  
+  await User.create({
+    email: 'secondUser@email.com',
+    password: 'firstPassword'
+  })
+  await User.create({
+    email: 'thirdUser@email.com',
+    password: 'firstPassword'
+  })
+
   await Product.create({
     name: 'Dunk-a-Roos',
     price: 450,
@@ -63,7 +72,7 @@ async function seed() {
     manufacturer: 'Hubba Bubba',
     itemQuantity: 50
   })
-  
+
   await Product.create({
     name: 'Bop It',
     price: 2000,
@@ -74,7 +83,7 @@ async function seed() {
     manufacturer: 'Hasbro',
     itemQuantity: 10
   })
-  
+
   await Product.create({
     name: 'Talkboy',
     price: 1000,
@@ -117,7 +126,7 @@ async function seed() {
     manufacturer: 'Galoob',
     itemQuantity: 300
   })
-  
+
   await Product.create({
     name: 'The Fresh Prince of Bel-Air: Seasons 1-6',
     price: 6999,
@@ -222,11 +231,26 @@ async function seed() {
     manufacturer: 'Sega',
     itemQuantity: 300
   })
-  const firstOrder = await Order.create({
-    isCart: false,
-    content: [],
+
+  await Order.create({
+    isCart: true,
+    content: [
+      {id: 1, itemQuantity: 2, price: 1900},
+      {id: 3, itemQuantity: 1, price: 900}
+    ],
     userId: 1
   })
+  await Order.create({
+    isCart: true,
+    content: [{id: 1, itemQuantity: 2, price: 1900}],
+    userId: 2
+  })
+  await Order.create({
+    isCart: false,
+    content: [{id: 2, itemQuantity: 2, price: 1900}],
+    userId: 3
+  })
+
   // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
