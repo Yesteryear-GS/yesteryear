@@ -11,21 +11,30 @@ describe('User model', () => {
 
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
-      let cody
+      let user
 
       beforeEach(async () => {
-        cody = await User.create({
-          email: 'cody@puppybook.com',
-          password: 'bones'
+        user = await User.create({
+          email: 'user@gmail.com',
+          password: 'yesteryear'
         })
       })
 
       it('returns true if the password is correct', () => {
-        expect(cody.correctPassword('bones')).to.be.equal(true)
+        expect(user.correctPassword('yesteryear')).to.be.equal(true)
       })
 
       it('returns false if the password is incorrect', () => {
-        expect(cody.correctPassword('bonez')).to.be.equal(false)
+        expect(user.correctPassword('bonez')).to.be.equal(false)
+      })
+
+      it('requires an email', async () => {
+        try {
+          await user.validate()
+          // throw new Error('Validation succeeded but should have failed')
+        } catch (error) {
+          expect(error.message).to.contain('email')
+        }
       })
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')

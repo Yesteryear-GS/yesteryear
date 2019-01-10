@@ -9,6 +9,7 @@ async function seed() {
     email: 'firstUser@email.com',
     password: 'firstPassword'
   })
+  
   await Product.create({
     name: 'Dunk-a-Roos',
     price: 450,
@@ -62,6 +63,7 @@ async function seed() {
     manufacturer: 'Hubba Bubba',
     itemQuantity: 50
   })
+  
   await Product.create({
     name: 'Bop It',
     price: 2000,
@@ -72,6 +74,7 @@ async function seed() {
     manufacturer: 'Hasbro',
     itemQuantity: 10
   })
+  
   await Product.create({
     name: 'Talkboy',
     price: 1000,
@@ -114,6 +117,7 @@ async function seed() {
     manufacturer: 'Galoob',
     itemQuantity: 300
   })
+  
   await Product.create({
     name: 'The Fresh Prince of Bel-Air: Seasons 1-6',
     price: 6999,
@@ -167,6 +171,7 @@ async function seed() {
     manufacturer: 'Shout Factory',
     itemQuantity: 100
   })
+
   await Product.create({
     name: 'Game Boy Color',
     price: 8000,
