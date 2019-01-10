@@ -35,3 +35,18 @@ router.get('/:id/orders', async (req, res, next) => {
     next(error)
   }
 })
+
+router.get('/:id/cart', async (req, res, next) => {
+  try {
+    const userId = req.params.id
+    const userCart = await Order.findAll({
+      where: {
+        userId,
+        isCart: true
+      }
+    })
+    res.json(userCart)
+  } catch (error) {
+    next(error)
+  }
+})
