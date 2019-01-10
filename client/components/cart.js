@@ -1,30 +1,32 @@
 import React, {Component} from 'react'
 import store from '../store/index'
 import axios from 'axios'
-import Thumbnail from './thumbnail'
 
 class Cart extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      cart: []
+      cart: [],
+      products: []
     }
   }
 
   async componentDidMount() {
-    const userId = store.getState().user.id
-    const {data} = await axios.get('api/users/' + userId + '/orders')
-    this.setState({cart: data})
+    const storeState = store.getState()
+    const userId = storeState.user.id
+    const {data} = await axios.get('api/users/' + userId + '/cart')
+    this.setState({cart: data, products: storeState})
   }
 
   render() {
     return (
       <>
         <h2>Cart</h2>
-        {this.state.cart.map(item => {
-          // for each item in the cart, render an item view
-          // TODO: connect products to cart
-        })}
+        {this.state.cart.content &&
+          this.state.cart.content.map(item => {
+            const cartItem = this.state.products.product.products[item.id - 1]
+            return <img className="images" src={cartItem.imageUrl} />
+          })}
       </>
     )
   }
