@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order} = require('../db/models')
+const {User, Order, Product} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -31,6 +31,21 @@ router.get('/:id/orders', async (req, res, next) => {
     const userId = req.params.id
     const userOrders = await Order.findAll({where: {userId: userId}})
     res.json(userOrders)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:id/cart', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    const userCart = await Order.findOrCreate({
+      where: {
+        userId,
+        isCart: true
+      }
+    })
+    res.json(userCart)
   } catch (error) {
     next(error)
   }
