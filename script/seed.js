@@ -251,6 +251,19 @@ async function seed() {
     userId: 3
   })
 
+  await Order.create({
+    isCart: true,
+    content: [
+      {id: 17, itemQuantity: 1, price: 3000},
+      {id: 5, itemQuantity: 3, price: 4000},
+      {id: 20, itemQuantity: 2, price: 9800},
+      {id: 10, itemQuantity: 3, price: 2000},
+      {id: 2, itemQuantity: 7, price: 300},
+      {id: 16, itemQuantity: 1, price: 7500}
+    ],
+    userId: 3
+  })
+
   // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
