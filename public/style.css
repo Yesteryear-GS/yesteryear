@@ -29,6 +29,10 @@ td {
   min-width: 15vw;
 }
 
+.cart-thumbnail {
+  max-height: 10vh;
+}
+
 .block {
   display: block;
 }

@@ -65,7 +65,7 @@ class Cart extends Component {
                   <tr key={`cart-item-${item.id - 1}`}>
                     <td>{name}</td>
                     <td>
-                      <img className="images" src={imgUrl} />
+                      <img className="cart-thumbnail" src={imgUrl} />
                     </td>
                     <td>{qty}</td>
                     <td>{this.formatPrice(price)}</td>
