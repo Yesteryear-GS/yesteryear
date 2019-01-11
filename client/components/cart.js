@@ -13,7 +13,6 @@ class Cart extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.state)
     const storeState = store.getState()
     const userId = storeState.user.id
     const {data} = await axios.get('api/users/' + userId + '/cart')
