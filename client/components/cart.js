@@ -25,7 +25,6 @@ class Cart extends Component {
   }
 
   generateTotalPrice() {
-    console.log(this.state)
     const totalPrice = this.state.cart.reduce((total, currentProduct) => {
       return total + currentProduct.price * currentProduct.itemQuantity
     }, 0)
