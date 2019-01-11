@@ -35,6 +35,9 @@ class Cart extends Component {
   }
 
   render() {
+    // TODO: create ternary that points to either user (DB) or guest (lS) cart
+    const cart = this.state.cart.content
+
     return (
       <>
         <h2>Cart</h2>
@@ -49,8 +52,9 @@ class Cart extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.cart.content &&
-              this.state.cart.content.map((item, idx) => {
+            {cart && cart.length ? (
+              cart &&
+              cart.map((item, idx) => {
                 const cartItem = this.state.products.product.products[
                   item.id - 1
                 ]
@@ -72,7 +76,17 @@ class Cart extends Component {
                     <td>{this.formatPrice(adjPrice)}</td>
                   </tr>
                 )
-              })}
+              })
+            ) : (
+              <tr>
+                <td />
+                <td />
+                <td id="empty-cart">
+                  <h3>Your cart is empty!</h3>
+                  <p>Head over to the products page to change that!</p>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <h4>Total: {this.formatPrice(this.state.totalPrice)}</h4>

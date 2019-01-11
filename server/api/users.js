@@ -39,7 +39,7 @@ router.get('/:id/orders', async (req, res, next) => {
 router.get('/:id/cart', async (req, res, next) => {
   try {
     const userId = req.session.passport.user
-    const userCart = await Order.findOne({
+    const userCart = await Order.findOrCreate({
       where: {
         userId,
         isCart: true
