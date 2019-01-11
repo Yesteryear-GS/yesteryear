@@ -16,7 +16,7 @@ class Cart extends Component {
     const storeState = store.getState()
     const userId = storeState.user.id
     const {data} = await axios.get('api/users/' + userId + '/cart')
-    this.setState({cart: data, products: storeState})
+    this.setState({cart: data[0], products: storeState})
     this.generateTotalPrice()
   }
 
