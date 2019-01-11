@@ -21,6 +21,14 @@ form div {
   display: inline-block;
 }
 
+table {
+  margin: 0 auto;
+}
+
+td {
+  min-width: 15vw;
+}
+
 .block {
   display: block;
 }
