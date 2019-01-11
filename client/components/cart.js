@@ -18,6 +18,10 @@ class Cart extends Component {
     this.setState({cart: data, products: storeState})
   }
 
+  formatPrice(priceInt) {
+    return (priceInt / 100).toFixed(2)
+  }
+
   render() {
     return (
       <>
@@ -28,6 +32,8 @@ class Cart extends Component {
               <td>Item</td>
               <td>Image</td>
               <td>Quantity</td>
+              <td>Price (ea.)</td>
+              <td>Price</td>
             </tr>
           </thead>
           <tbody>
@@ -37,13 +43,21 @@ class Cart extends Component {
                   item.id - 1
                 ]
 
+                const name = cartItem.name
+                const imgUrl = cartItem.imageUrl
+                const qty = this.state.cart.content[idx].itemQuantity
+                const price = this.state.cart.content[idx].price
+                const adjPrice = price * qty
+
                 return (
                   <tr key={`cart-item-${item.id - 1}`}>
-                    <td>{cartItem.name}</td>
+                    <td>{name}</td>
                     <td>
-                      <img className="images" src={cartItem.imageUrl} />
+                      <img className="images" src={imgUrl} />
                     </td>
-                    <td>{this.state.cart.content[idx].itemQuantity}</td>
+                    <td>{qty}</td>
+                    <td>${this.formatPrice(price)}</td>
+                    <td>${this.formatPrice(adjPrice)}</td>
                   </tr>
                 )
               })}
