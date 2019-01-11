@@ -16,7 +16,7 @@ class Cart extends Component {
     const storeState = store.getState()
     const userId = storeState.user.id
     const {data} = await axios.get('api/users/' + userId + '/cart')
-    this.setState({cart: data, products: storeState})
+    this.setState({cart: data[0], products: storeState})
     this.generateTotalPrice()
   }
 
@@ -25,18 +25,16 @@ class Cart extends Component {
   }
 
   generateTotalPrice() {
-    const totalPrice = this.state.cart.content.reduce(
-      (total, currentProduct) => {
-        return total + currentProduct.price * currentProduct.itemQuantity
-      },
-      0
-    )
+    console.log(this.state)
+    const totalPrice = this.state.cart.reduce((total, currentProduct) => {
+      return total + currentProduct.price * currentProduct.itemQuantity
+    }, 0)
     this.setState({totalPrice})
   }
 
   render() {
     // TODO: create ternary that points to either user (DB) or guest (lS) cart
-    const cart = this.state.cart.content
+    const cart = this.state.cart
 
     return (
       <>
