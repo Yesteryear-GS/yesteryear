@@ -32,7 +32,7 @@ const AuthForm = props => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <p>- OR -</p>
-      <Button variant="outlined" component={Link} to="/auth/google">
+      <Button variant="outlined" href="/auth/google">
         {displayName} with Google
       </Button>
     </div>
