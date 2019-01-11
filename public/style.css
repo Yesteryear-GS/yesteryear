@@ -109,3 +109,7 @@ h3 {
   margin-top: 2%;
   font-size: 5vh;
 }
+
+#empty-cart {
+  margin: 10vh auto;
+}
