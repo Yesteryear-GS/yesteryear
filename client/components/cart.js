@@ -22,11 +22,33 @@ class Cart extends Component {
     return (
       <>
         <h2>Cart</h2>
-        {this.state.cart.content &&
-          this.state.cart.content.map(item => {
-            const cartItem = this.state.products.product.products[item.id - 1]
-            return <img className="images" src={cartItem.imageUrl} />
-          })}
+        <table>
+          <thead>
+            <tr>
+              <td>Item</td>
+              <td>Image</td>
+              <td>Quantity</td>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.cart.content &&
+              this.state.cart.content.map((item, idx) => {
+                const cartItem = this.state.products.product.products[
+                  item.id - 1
+                ]
+
+                return (
+                  <tr key={`cart-item-${item.id - 1}`}>
+                    <td>{cartItem.name}</td>
+                    <td>
+                      <img className="images" src={cartItem.imageUrl} />
+                    </td>
+                    <td>{this.state.cart.content[idx].itemQuantity}</td>
+                  </tr>
+                )
+              })}
+          </tbody>
+        </table>
       </>
     )
   }
