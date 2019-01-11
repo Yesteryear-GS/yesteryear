@@ -7,7 +7,8 @@ class Cart extends Component {
     super(props)
     this.state = {
       cart: [],
-      products: []
+      products: [],
+      totalPrice: 0
     }
   }
 
@@ -16,10 +17,21 @@ class Cart extends Component {
     const userId = storeState.user.id
     const {data} = await axios.get('api/users/' + userId + '/cart')
     this.setState({cart: data, products: storeState})
+    this.generateTotalPrice()
   }
 
   formatPrice(priceInt) {
-    return (priceInt / 100).toFixed(2)
+    return '$' + (priceInt / 100).toFixed(2)
+  }
+
+  generateTotalPrice() {
+    const totalPrice = this.state.cart.content.reduce(
+      (total, currentProduct) => {
+        return total + currentProduct.price * currentProduct.itemQuantity
+      },
+      0
+    )
+    this.setState({totalPrice})
   }
 
   render() {
@@ -56,13 +68,14 @@ class Cart extends Component {
                       <img className="images" src={imgUrl} />
                     </td>
                     <td>{qty}</td>
-                    <td>${this.formatPrice(price)}</td>
-                    <td>${this.formatPrice(adjPrice)}</td>
+                    <td>{this.formatPrice(price)}</td>
+                    <td>{this.formatPrice(adjPrice)}</td>
                   </tr>
                 )
               })}
           </tbody>
         </table>
+        <h4>Total: {this.formatPrice(this.state.totalPrice)}</h4>
       </>
     )
   }
