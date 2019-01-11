@@ -89,7 +89,10 @@ class Cart extends Component {
             )}
           </tbody>
         </table>
-        <h4>Total: {this.formatPrice(this.state.totalPrice)}</h4>
+        <h4>
+          Total:{' '}
+          {this.state.totalPrice && this.formatPrice(this.state.totalPrice)}
+        </h4>
       </>
     )
   }
