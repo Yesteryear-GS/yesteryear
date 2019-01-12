@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import store from '../store/index'
 import axios from 'axios'
+import CartTable from './cartTable'
 
 class Cart extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class Cart extends Component {
       products: [],
       totalPrice: 0
     }
+    this.formatPrice = this.formatPrice.bind(this)
+    this.generateTotalPrice = this.generateTotalPrice.bind(this)
   }
 
   async componentDidMount() {
@@ -65,15 +68,15 @@ class Cart extends Component {
                 const adjPrice = price * qty
 
                 return (
-                  <tr key={`cart-item-${item.id - 1}`}>
-                    <td>{name}</td>
-                    <td>
-                      <img className="cart-thumbnail" src={imgUrl} />
-                    </td>
-                    <td>{qty}</td>
-                    <td>{this.formatPrice(price)}</td>
-                    <td>{this.formatPrice(adjPrice)}</td>
-                  </tr>
+                  <CartTable
+                    key={`cart-item-${item.id - 1}`}
+                    name={name}
+                    imgUrl={imgUrl}
+                    qty={qty}
+                    price={price}
+                    adjPrice={adjPrice}
+                    formatPrice={this.formatPrice}
+                  />
                 )
               })
             ) : (
