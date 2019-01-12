@@ -8,10 +8,10 @@ import AllProducts from './all-products'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {email, isUser} = props
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      {isUser && <h3>Welcome, {email}</h3>}
       <div id="home">
         <section id="carousel">
           <img src="./images/temp_img.jpg" />
@@ -38,7 +38,8 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    isUser: !!state.user.id
   }
 }
 
