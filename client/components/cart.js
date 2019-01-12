@@ -53,7 +53,6 @@ class Cart extends Component {
           </thead>
           <tbody>
             {cart && cart.length ? (
-              cart &&
               cart.map((item, idx) => {
                 const cartItem = this.state.products.product.products[
                   item.id - 1
@@ -81,9 +80,11 @@ class Cart extends Component {
               <tr>
                 <td />
                 <td />
-                <td id="empty-cart">
-                  <h3>Your cart is empty!</h3>
-                  <p>Head over to the products page to change that!</p>
+                <td>
+                  <div id="empty-cart">
+                    <h3>Your cart is empty!</h3>
+                    <p>Head over to the products page to change that!</p>
+                  </div>
                 </td>
               </tr>
             )}
