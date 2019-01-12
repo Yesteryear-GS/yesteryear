@@ -16,7 +16,7 @@ class Cart extends Component {
     const storeState = store.getState()
     const userId = storeState.user.id
     const {data} = await axios.get('api/users/' + userId + '/cart')
-    this.setState({cart: data, products: storeState})
+    this.setState({cart: data[0], products: storeState})
     this.generateTotalPrice()
   }
 
@@ -35,6 +35,9 @@ class Cart extends Component {
   }
 
   render() {
+    // TODO: create ternary that points to either user (DB) or guest (lS) cart
+    const cart = this.state.cart.content
+
     return (
       <>
         <h2>Cart</h2>
@@ -49,8 +52,8 @@ class Cart extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.cart.content &&
-              this.state.cart.content.map((item, idx) => {
+            {cart && cart.length ? (
+              cart.map((item, idx) => {
                 const cartItem = this.state.products.product.products[
                   item.id - 1
                 ]
@@ -72,10 +75,25 @@ class Cart extends Component {
                     <td>{this.formatPrice(adjPrice)}</td>
                   </tr>
                 )
-              })}
+              })
+            ) : (
+              <tr>
+                <td />
+                <td />
+                <td>
+                  <div id="empty-cart">
+                    <h3>Your cart is empty!</h3>
+                    <p>Head over to the products page to change that!</p>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
-        <h4>Total: {this.formatPrice(this.state.totalPrice)}</h4>
+        <h4>
+          Total:{' '}
+          {this.state.totalPrice && this.formatPrice(this.state.totalPrice)}
+        </h4>
       </>
     )
   }

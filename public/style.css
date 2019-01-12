@@ -102,10 +102,27 @@ td {
 }
 
 #products {
-  height: auto;
+  display: flex;
 }
 
 h3 {
   margin-top: 2%;
   font-size: 5vh;
+}
+
+#empty-cart {
+  margin: 10vh auto;
+}
+
+#product-container {
+  align-items: flex-end;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: baseline;
+}
+
+.product-thumb {
+  flex: 1;
+  padding: 5vh 3vw;
+  width: 30vw;
 }
