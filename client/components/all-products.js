@@ -13,7 +13,7 @@ class AllProducts extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div id="product-container">
         {this.props.products.map(product => {
           return <Thumbnail product={product} key={product.id} />
         })}
