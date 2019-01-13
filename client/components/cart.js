@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import store from '../store/index'
 import axios from 'axios'
 import CartTable from './cartTable'
+import {connect} from 'react-redux'
+import {getCart} from '../store/cart'
 
 class Cart extends Component {
   constructor(props) {
@@ -16,10 +18,11 @@ class Cart extends Component {
   }
 
   async componentDidMount() {
-    const storeState = store.getState()
-    const userId = storeState.user.id
-    const {data} = await axios.get('api/users/' + userId + '/cart')
-    this.setState({cart: data[0], products: storeState})
+    this.props.getCurrentCart()
+    // const storeState = store.getState()
+    // const userId = storeState.user.id
+    // const {data} = await axios.get('api/users/' + userId + '/cart')
+    this.setState({cart: [], products: this.props.products})
     this.generateTotalPrice()
   }
 
@@ -28,18 +31,17 @@ class Cart extends Component {
   }
 
   generateTotalPrice() {
-    const totalPrice = this.state.cart.content.reduce(
-      (total, currentProduct) => {
+    const totalPrice =
+      this.props.cart &&
+      this.props.cart.content.reduce((total, currentProduct) => {
         return total + currentProduct.price * currentProduct.itemQuantity
-      },
-      0
-    )
+      }, 0)
     this.setState({totalPrice})
   }
 
   render() {
     // TODO: create ternary that points to either user (DB) or guest (lS) cart
-    const cart = this.state.cart.content
+    const cart = this.props.cart
 
     return (
       <>
@@ -55,11 +57,9 @@ class Cart extends Component {
             </tr>
           </thead>
           <tbody>
-            {cart && cart.length ? (
-              cart.map((item, idx) => {
-                const cartItem = this.state.products.product.products[
-                  item.id - 1
-                ]
+            {cart && cart.cart && cart.cart[0] ? (
+              cart.cart[0].content.map((item, idx) => {
+                const cartItem = this.state.products[item.id - 1]
 
                 const name = cartItem.name
                 const imgUrl = cartItem.imageUrl
@@ -102,4 +102,19 @@ class Cart extends Component {
   }
 }
 
-export default Cart
+const mapStateToProps = state => {
+  return {
+    cart: state.cart.cart[0],
+    products: state.product
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCurrentCart: () => {
+      dispatch(getCart())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
