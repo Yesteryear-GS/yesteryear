@@ -10,7 +10,6 @@ class Cart extends Component {
     super(props)
     this.state = {
       cart: [],
-      products: [],
       totalPrice: 0
     }
     this.formatPrice = this.formatPrice.bind(this)
@@ -19,10 +18,7 @@ class Cart extends Component {
 
   async componentDidMount() {
     this.props.getCurrentCart()
-    // const storeState = store.getState()
-    // const userId = storeState.user.id
-    // const {data} = await axios.get('api/users/' + userId + '/cart')
-    this.setState({cart: [], products: this.props.products})
+    this.setState({cart: []})
     this.generateTotalPrice()
   }
 
@@ -42,7 +38,6 @@ class Cart extends Component {
   render() {
     // TODO: create ternary that points to either user (DB) or guest (lS) cart
     const cart = this.props.cart
-
     return (
       <>
         <h2>Cart</h2>
@@ -57,14 +52,14 @@ class Cart extends Component {
             </tr>
           </thead>
           <tbody>
-            {cart && cart.cart && cart.cart[0] ? (
-              cart.cart[0].content.map((item, idx) => {
-                const cartItem = this.state.products[item.id - 1]
+            {cart && cart.content ? (
+              cart.content.map((item, idx) => {
+                const cartItem = this.props.products[item.id - 1]
 
                 const name = cartItem.name
                 const imgUrl = cartItem.imageUrl
-                const qty = this.state.cart.content[idx].itemQuantity
-                const price = this.state.cart.content[idx].price
+                const qty = cart.content[idx].itemQuantity
+                const price = cart.content[idx].price
                 const adjPrice = price * qty
 
                 return (
@@ -105,7 +100,7 @@ class Cart extends Component {
 const mapStateToProps = state => {
   return {
     cart: state.cart.cart[0],
-    products: state.product
+    products: state.product.products
   }
 }
 
