@@ -43,9 +43,31 @@ router.get('/:id/cart', async (req, res, next) => {
       where: {
         userId,
         isCart: true
+      },
+      defaults: {
+        content: []
       }
     })
     res.json(userCart)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:id/cart', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    console.log('reqqq', req.body.content)
+    const currentCart = await Order.update(
+      {content: req.body.content},
+      {
+        where: {
+          userId,
+          isCart: true
+        }
+      }
+    )
+    res.send(currentCart)
   } catch (error) {
     next(error)
   }
