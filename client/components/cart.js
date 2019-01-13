@@ -25,65 +25,28 @@ class Cart extends Component {
     return (
       <>
         <h2>Cart</h2>
-        <table>
-          <thead>
-            <tr>
-              <td className="underlined">Item</td>
-              <td className="underlined">Image</td>
-              <td className="underlined">Quantity</td>
-              <td className="underlined">Price (ea.)</td>
-              <td className="underlined">Price</td>
-              <td className="underlined">Put back</td>
-            </tr>
-          </thead>
-          <tbody>
-            {cart && cart.content ? (
-              cart.content.map((item, idx) => {
-                const cartItem = this.props.products[item.id - 1]
+        {cart && cart.content ? (
+          <CartTable cart={cart} products={this.props.products} />
+        ) : (
+          <div id="empty-cart">
+            <h3>Your cart is empty!</h3>
+            <p>Head over to the products page to change that!</p>
+          </div>
+        )}
 
-                const name = cartItem.name
-                const imgUrl = cartItem.imageUrl
-                const qty = cart.content[idx].itemQuantity
-                const price = cart.content[idx].price
-                const adjPrice = price * qty
-
-                return (
-                  <CartTable
-                    key={`cart-item-${item.id - 1}`}
-                    name={name}
-                    imgUrl={imgUrl}
-                    qty={qty}
-                    price={price}
-                    adjPrice={adjPrice}
-                    formatPrice={this.formatPrice}
-                  />
-                )
-              })
-            ) : (
-              <tr>
-                <td />
-                <td />
-                <td>
-                  <div id="empty-cart">
-                    <h3>Your cart is empty!</h3>
-                    <p>Head over to the products page to change that!</p>
-                  </div>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
         <h4>
           Total:{' '}
-          {cart &&
-            cart.content &&
+          {cart && cart.content ? (
             this.formatPrice(
               cart.content.reduce((total, currentProduct) => {
                 return (
                   total + currentProduct.price * currentProduct.itemQuantity
                 )
               }, 0)
-            )}
+            )
+          ) : (
+            <span>$0.00</span>
+          )}
         </h4>
         {cart &&
           cart.content &&

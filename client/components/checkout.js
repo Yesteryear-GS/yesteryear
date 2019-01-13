@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import axios from 'axios'
 import {getCart} from '../store/cart'
+import CartTable from './cartTable'
 
 class Checkout extends Component {
   componentDidMount() {
@@ -13,6 +13,10 @@ class Checkout extends Component {
     return (
       <>
         <h2>Checkout</h2>
+        <CartTable
+          cart={this.props.currentCart}
+          products={this.props.products}
+        />
       </>
     )
   }
@@ -20,7 +24,8 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentCart: state.cart
+    currentCart: state.cart.cart[0],
+    products: state.product.products
   }
 }
 
