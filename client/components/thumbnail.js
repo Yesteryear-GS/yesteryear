@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Button from '@material-ui/core/Button'
 import store from '../store/index'
 import axios from 'axios'
@@ -13,25 +12,27 @@ class Thumbnail extends React.Component {
   async clickHandler() {
     const storeState = store.getState()
     const userId = storeState.user.id
-    console.log(userId)
+
     if (userId) {
-      const {data} = await axios.get('api/users/' + userId + '/cart')
-      console.log('look here', data)
-      data.content.forEach(item => {
+      const {data} = await axios.get('/api/users/' + userId + '/cart')
+      let cart = data[0].content
+      let itemFound = false
+      if (!cart) cart = []
+      cart.forEach(item => {
         if (item.id === this.props.product.id) {
-          item.itemQuantity++
-        } else {
-          data.content.push('hi')
+          itemFound = true
+          item.itemQuantity += 1
         }
       })
-      console.log('new', data)
-      // if (data.id === this.props.product.id)
-      // const newCart = data.content.push(
-      //   {
-      //     id: this.props.product.id,
-      //     itemQuantity: 1
-      //   }
-      // )
+      if (!itemFound) {
+        cart.push({
+          id: this.props.product.id,
+          itemQuantity: 1,
+          price: this.props.product.price
+        })
+      }
+
+      axios.put('/api/users/' + userId + '/cart', {content: cart})
     }
   }
 
