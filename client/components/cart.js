@@ -8,31 +8,15 @@ import {getCart} from '../store/cart'
 class Cart extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      cart: [],
-      totalPrice: 0
-    }
     this.formatPrice = this.formatPrice.bind(this)
-    this.generateTotalPrice = this.generateTotalPrice.bind(this)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.props.getCurrentCart()
-    this.setState({cart: []})
-    this.generateTotalPrice()
   }
 
   formatPrice(priceInt) {
     return '$' + (priceInt / 100).toFixed(2)
-  }
-
-  generateTotalPrice() {
-    const totalPrice =
-      this.props.cart &&
-      this.props.cart.content.reduce((total, currentProduct) => {
-        return total + currentProduct.price * currentProduct.itemQuantity
-      }, 0)
-    this.setState({totalPrice})
   }
 
   render() {
@@ -90,7 +74,15 @@ class Cart extends Component {
         </table>
         <h4>
           Total:{' '}
-          {this.state.totalPrice && this.formatPrice(this.state.totalPrice)}
+          {cart &&
+            cart.content &&
+            this.formatPrice(
+              cart.content.reduce((total, currentProduct) => {
+                return (
+                  total + currentProduct.price * currentProduct.itemQuantity
+                )
+              }, 0)
+            )}
         </h4>
       </>
     )

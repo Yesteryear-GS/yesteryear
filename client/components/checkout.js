@@ -3,13 +3,8 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 
 class Checkout extends Component {
-  async componentDidMount() {
-    const data = await axios.get(
-      '/api/users/' + this.props.currentUser + '/cart'
-    )
-  }
-
   render() {
+    console.log(this.props.currentCart)
     return (
       <>
         <h2>Checkout</h2>
@@ -20,7 +15,7 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.user.id
+    currentCart: state.cart
   }
 }
 
