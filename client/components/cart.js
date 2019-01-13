@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import store from '../store/index'
-import axios from 'axios'
 import CartTable from './cartTable'
 import {connect} from 'react-redux'
 import {getCart} from '../store/cart'
+import Button from '@material-ui/core/Button'
+import {Link} from 'react-router-dom'
 
 class Cart extends Component {
   constructor(props) {
@@ -28,11 +28,12 @@ class Cart extends Component {
         <table>
           <thead>
             <tr>
-              <td>Item</td>
-              <td>Image</td>
-              <td>Quantity</td>
-              <td>Price (ea.)</td>
-              <td>Price</td>
+              <td className="underlined">Item</td>
+              <td className="underlined">Image</td>
+              <td className="underlined">Quantity</td>
+              <td className="underlined">Price (ea.)</td>
+              <td className="underlined">Price</td>
+              <td className="underlined">Put back</td>
             </tr>
           </thead>
           <tbody>
@@ -84,6 +85,10 @@ class Cart extends Component {
               }, 0)
             )}
         </h4>
+        <Button component={Link} to="/checkout">
+          Go to Checkout
+          <i className="material-icons button-icon">shopping_cart</i>
+        </Button>
       </>
     )
   }

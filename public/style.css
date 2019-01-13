@@ -126,3 +126,12 @@ h3 {
   padding: 5vh 3vw;
   width: 30vw;
 }
+
+.button-icon {
+  padding-left: 10px;
+}
+
+.underlined {
+  padding-bottom: 2vh;
+  text-decoration: underline;
+}
