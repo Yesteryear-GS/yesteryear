@@ -85,10 +85,14 @@ class Cart extends Component {
               }, 0)
             )}
         </h4>
-        <Button component={Link} to="/checkout">
-          Go to Checkout
-          <i className="material-icons button-icon">shopping_cart</i>
-        </Button>
+        {cart &&
+          cart.content &&
+          cart.content[0] && (
+            <Button component={Link} to="/checkout">
+              Go to Checkout
+              <i className="material-icons button-icon">shopping_cart</i>
+            </Button>
+          )}
       </>
     )
   }
