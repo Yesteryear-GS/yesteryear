@@ -3,7 +3,16 @@ const {Order} = require('../db/models')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+const isAuthenticated = async (req, res, next) => {
+  const foundOrder = await Order.findById(req.params.id)
+  if (foundOrder.userId === req.user.dataValues.id) {
+    return next()
+  } else {
+    res.redirect('/')
+  }
+}
+
+router.get('/', isAuthenticated, async (req, res, next) => {
   try {
     console.log('look here', req.body)
     const orders = await Order.findAll()
@@ -13,7 +22,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isAuthenticated, async (req, res, next) => {
   try {
     const product = await Order.findById(req.params.id)
     res.json(product)

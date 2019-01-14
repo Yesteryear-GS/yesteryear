@@ -1,7 +1,8 @@
 const router = require('express').Router()
-const {User, Order, Product} = require('../db/models')
+const {User, Order} = require('../db/models')
 module.exports = router
 
+/*
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -15,8 +16,16 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
+*/
 
-router.get('/:id', async (req, res, next) => {
+const isAuthenticated = (req, res, next) => {
+  if (req.user.dataValues.id === Number(req.params.id)) {
+    return next()
+  }
+  res.redirect('/')
+}
+
+router.get('/:id', isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.params.id
     const data = await User.findById(userId)
@@ -26,7 +35,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.get('/:id/orders', async (req, res, next) => {
+router.get('/:id/orders', isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.params.id
     const userOrders = await Order.findAll({where: {userId: userId}})
@@ -36,7 +45,7 @@ router.get('/:id/orders', async (req, res, next) => {
   }
 })
 
-router.get('/:id/cart', async (req, res, next) => {
+router.get('/:id/cart', isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.session.passport.user
     const userCart = await Order.findOrCreate({
@@ -54,7 +63,7 @@ router.get('/:id/cart', async (req, res, next) => {
   }
 })
 
-router.get('/:id/order-history', async (req, res, next) => {
+router.get('/:id/order-history', isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.session.passport.user
     const orderHistory = await Order.findAll({
@@ -69,10 +78,9 @@ router.get('/:id/order-history', async (req, res, next) => {
   }
 })
 
-router.put('/:id/cart', async (req, res, next) => {
+router.put('/:id/cart', isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.session.passport.user
-    console.log('reqqq', req.body.content)
     const currentCart = await Order.update(
       {content: req.body.content},
       {
