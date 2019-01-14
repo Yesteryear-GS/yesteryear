@@ -6,8 +6,12 @@ function formatPrice(priceInt) {
 }
 
 const CartTable = props => {
-  const {cart, products} = props
+  const {cart, products, isUser} = props
 
+  if (!isUser) {
+    cart.content = cart
+  }
+  console.log(cart.content)
   return (
     <table>
       <thead>

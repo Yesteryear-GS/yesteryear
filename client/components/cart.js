@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, {Component} from 'react'
 import CartTable from './cartTable'
 import {connect} from 'react-redux'
@@ -21,12 +22,23 @@ class Cart extends Component {
 
   render() {
     // TODO: create ternary that points to either user (DB) or guest (lS) cart
-    const cart = this.props.cart
+    const cart = this.props.userId
+      ? this.props.cart.cart[0]
+      : this.props.cart.cart
+
+    if (!this.props.userId) {
+      cart.content = cart
+    }
+
     return (
       <>
         <h2>Cart</h2>
         {cart && cart.content ? (
-          <CartTable cart={cart} products={this.props.products} />
+          <CartTable
+            cart={cart}
+            products={this.props.products}
+            isUser={!!this.props.userId}
+          />
         ) : (
           <div id="empty-cart">
             <h3>Your cart is empty!</h3>
@@ -63,8 +75,9 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart.cart[0],
-    products: state.product.products
+    cart: state.cart,
+    products: state.product.products,
+    userId: state.user.id
   }
 }
 
