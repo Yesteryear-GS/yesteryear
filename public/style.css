@@ -155,6 +155,15 @@ h3 {
   width: 30vw;
 }
 
+.button-icon {
+  padding-left: 10px;
+}
+
+.underlined {
+  padding-bottom: 2vh;
+  text-decoration: underline;
+}
+
 p {
   font-family: 'Quicksand', sans-serif;
 }
