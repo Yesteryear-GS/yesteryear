@@ -59,28 +59,35 @@ td {
 }
 
 #navbar {
-  display: inline-block;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
   text-align: center;
+  align-items: center;
   width: 100%;
   height: auto;
   background-color: white;
 }
 
 #logo {
-  width: 40%;
-  height: auto;
+  width: 25%;
+  height: 25%;
+  padding-left: 2vw;
 }
 
 #navbar > nav {
   text-align: center;
+  width: 20vw;
+}
+
+#navbar > a {
+  display: flex;
 }
 
 #main-body {
-  padding-top: 25px;
+  padding-top: 0;
   background-color: white;
   width: 90%;
-  margin: 25% 5% 10% 5%;
+  margin: 10% 5% 10% 5%;
 }
 
 #carousel {
