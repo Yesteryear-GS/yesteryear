@@ -54,6 +54,21 @@ router.get('/:id/cart', async (req, res, next) => {
   }
 })
 
+router.get('/:id/order-history', async (req, res, next) => {
+  try {
+    const userId = req.session.passport.user
+    const orderHistory = await Order.findAll({
+      where: {
+        userId,
+        isCart: false
+      }
+    })
+    res.send(orderHistory)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/:id/cart', async (req, res, next) => {
   try {
     const userId = req.session.passport.user
