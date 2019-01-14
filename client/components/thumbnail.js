@@ -33,12 +33,46 @@ class Thumbnail extends React.Component {
       }
 
       axios.put('/api/users/' + userId + '/cart', {content: cart})
+    } else {
+      // 1. create an object representing the item added to cart
+      const {product} = this.props
+
+      const itemToAdd = {
+        id: product.id,
+        itemQuantity: 1,
+        price: product.price
+      }
+
+      // 2. see if current cart
+      if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', JSON.stringify(itemToAdd))
+      } else {
+        let currentCart = JSON.parse(localStorage.getItem('cart'))
+
+        if (!Array.isArray(currentCart)) {
+          currentCart = [currentCart]
+        }
+
+        let itemFound = false
+        currentCart.forEach(item => {
+          if (!itemFound && item.id === itemToAdd.id) {
+            item.itemQuantity++
+            itemFound = true
+          }
+        })
+
+        if (!itemFound) {
+          currentCart.push(itemToAdd)
+        }
+
+        localStorage.setItem('cart', JSON.stringify(currentCart))
+      }
+      console.log(localStorage.getItem('cart'))
     }
   }
 
   render() {
     return (
-
       <div className="product-thumb">
         <img src={this.props.product.imageUrl} className="images" />
         <p>{this.props.product.name}</p>
