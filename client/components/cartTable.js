@@ -11,7 +11,7 @@ const CartTable = props => {
   if (!isUser) {
     cart.content = cart
   }
-
+  console.log(cart.content)
   return (
     <table>
       <thead>

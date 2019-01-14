@@ -67,7 +67,6 @@ class Thumbnail extends React.Component {
 
         localStorage.setItem('cart', JSON.stringify(currentCart))
       }
-      console.log(localStorage.getItem('cart'))
     }
   }
 

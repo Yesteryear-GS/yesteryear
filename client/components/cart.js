@@ -26,12 +26,14 @@ class Cart extends Component {
       ? this.props.cart.cart[0]
       : this.props.cart.cart
 
+    if (!this.props.userId) {
+      cart.content = cart
+    }
+
     return (
       <>
         <h2>Cart</h2>
-        {this.props.userId ? (
-          cart && cart.content
-        ) : cart ? (
+        {cart && cart.content ? (
           <CartTable
             cart={cart}
             products={this.props.products}
