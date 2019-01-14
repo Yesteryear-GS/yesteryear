@@ -28,7 +28,7 @@ class Cart extends Component {
     return (
       <>
         <h2>Cart</h2>
-        {cart && cart.content ? (
+        {cart && cart.content && cart.content[0] ? (
           <CartTable
             cart={cart}
             products={this.props.products}
