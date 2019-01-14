@@ -23,13 +23,8 @@ class Cart extends Component {
   render() {
     // TODO: create ternary that points to either user (DB) or guest (lS) cart
     const cart = this.props.userId
-      ? this.props.cart.cart[0]
-      : this.props.cart.cart
-
-    if (!this.props.userId) {
-      cart.content = cart
-    }
-
+      ? this.props.cart.content[0]
+      : this.props.cart
     return (
       <>
         <h2>Cart</h2>

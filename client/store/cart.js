@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../store/index'
 
 const initialState = {
-  cart: []
+  content: []
 }
 
 const GOT_CART = 'GOT_CART'
@@ -18,7 +18,7 @@ const gotCart = cart => {
 export const removeCart = () => {
   return {
     type: REMOVE_CART,
-    cart: []
+    content: []
   }
 }
 
@@ -42,9 +42,9 @@ export const getCart = () => {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_CART:
-      return {...state, cart: action.cart}
+      return {...state, content: action.cart}
     case REMOVE_CART:
-      return {...state, cart: action.cart}
+      return {...state, content: action.cart}
     default:
       return state
   }

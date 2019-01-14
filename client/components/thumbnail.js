@@ -45,7 +45,8 @@ class Thumbnail extends React.Component {
 
       // 2. see if current cart
       if (!localStorage.getItem('cart')) {
-        localStorage.setItem('cart', JSON.stringify(itemToAdd))
+        let currentCart = [itemToAdd]
+        localStorage.setItem('cart', JSON.stringify(currentCart))
       } else {
         let currentCart = JSON.parse(localStorage.getItem('cart'))
 
