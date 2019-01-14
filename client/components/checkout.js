@@ -9,13 +9,17 @@ class Checkout extends Component {
   }
 
   render() {
+    const cart = this.props.userId
+      ? this.props.cart.content[0]
+      : this.props.cart
+
     return (
       <>
         <h2>Checkout</h2>
-        <CartTable
-          cart={this.props.currentCart}
-          products={this.props.products}
-        />
+        {cart &&
+          cart.content && (
+            <CartTable cart={cart} products={this.props.products} />
+          )}
       </>
     )
   }
@@ -23,8 +27,9 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentCart: state.cart.cart[0],
-    products: state.product.products
+    cart: state.cart,
+    products: state.product.products,
+    userId: state.user.id
   }
 }
 

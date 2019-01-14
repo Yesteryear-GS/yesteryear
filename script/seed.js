@@ -41,7 +41,7 @@ async function seed() {
     itemQuantity: 50
   })
   await Product.create({
-    name: 'Spice Girl Fantasty Ball Lollipop',
+    name: 'Spice Girl Fantasy Ball Lollipop',
     price: 190,
     imageUrl:
       'https://i.pinimg.com/originals/da/13/17/da131760d1fae4bc7ef444a8173227de.jpg',
@@ -106,7 +106,7 @@ async function seed() {
     itemQuantity: 10
   })
   await Product.create({
-    name: 'Beanie Banies',
+    name: 'Beanie Babies',
     price: 500,
     imageUrl:
       'https://images-na.ssl-images-amazon.com/images/I/51dEVC%2B3-bL._SX425_.jpg',
