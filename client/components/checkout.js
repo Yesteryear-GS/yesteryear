@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getCart} from '../store/cart'
 import CartTable from './cartTable'
+import SubmitPayment from './submitPayment'
 
 class Checkout extends Component {
   componentDidMount() {
@@ -16,10 +17,11 @@ class Checkout extends Component {
     return (
       <>
         <h2>Checkout</h2>
-        {cart &&
-          cart.content && (
-            <CartTable cart={cart} products={this.props.products} />
-          )}
+      {cart && cart.content && <CartTable
+          cart={this.props.currentCart}
+          products={this.props.products}
+        />}
+        <SubmitPayment cart={this.props.currentCart} />
       </>
     )
   }
