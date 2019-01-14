@@ -9,7 +9,6 @@ class Checkout extends Component {
   }
 
   render() {
-    console.log(this.props.currentCart)
     return (
       <>
         <h2>Checkout</h2>
