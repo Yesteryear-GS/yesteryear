@@ -9,7 +9,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="fixNav">
     <div id="navbar">
       <h1>
-        <Link to="/">yesteryear</Link>
+        <Link to="/">
+          <img id="logo" src="./images/yesteryear.png" />
+        </Link>
       </h1>
       <nav>
         {isLoggedIn ? (

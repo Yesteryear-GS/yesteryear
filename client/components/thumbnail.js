@@ -38,6 +38,7 @@ class Thumbnail extends React.Component {
 
   render() {
     return (
+
       <div className="product-thumb">
         <img src={this.props.product.imageUrl} className="images" />
         <p>{this.props.product.name}</p>
