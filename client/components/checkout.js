@@ -17,7 +17,8 @@ class Checkout extends Component {
           cart={this.props.currentCart}
           products={this.props.products}
         />
-        <button type="submit">Checkout</button>
+        {console.log(this.props.currentCart)}
+        <SubmitPayment cart={this.props.currentCart} />
       </>
     )
   }

@@ -11,9 +11,9 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 
-const keyPublishable = process.env.PUBLISHABLE_KEY
-const keySecret = process.env.SECRET_KEY
-const stripe = require('stripe')(keySecret)
+// const keyPublishable = process.env.PUBLISHABLE_KEY
+// const keySecret = process.env.SECRET_KEY
+// const stripe = require('stripe')(keySecret)
 
 module.exports = app
 
@@ -69,29 +69,29 @@ const createApp = () => {
   app.use(passport.session())
 
   //stripe set-up
-  app.set('view engine', 'pug')
-  app.use(require('body-parser').urlencoded({extended: false}))
+  // app.set('view engine', 'pug')
+  // app.use(require('body-parser').urlencoded({extended: false}))
 
-  app.get('/checkout', (req, res) => res.render('index.pug', {keyPublishable}))
+  // app.get('/checkout', (req, res) => res.render('index.pug', {keyPublishable}))
 
-  app.post('/checkout/charge', (req, res) => {
-    let amount = 500
+  // app.post('/checkout/charge', (req, res) => {
+  //   let amount = 500
 
-    stripe.customers
-      .create({
-        email: req.body.stripeEmail,
-        source: req.body.stripeToken
-      })
-      .then(customer =>
-        stripe.charges.create({
-          amount,
-          description: 'Sample Charge',
-          currency: 'usd',
-          customer: customer.id
-        })
-      )
-      .then(charge => res.render('charge.pug'))
-  })
+  //   stripe.customers
+  //     .create({
+  //       email: req.body.stripeEmail,
+  //       source: req.body.stripeToken
+  //     })
+  //     .then(customer =>
+  //       stripe.charges.create({
+  //         amount,
+  //         description: 'Sample Charge',
+  //         currency: 'usd',
+  //         customer: customer.id
+  //       })
+  //     )
+  //     .then(charge => res.render('charge.pug'))
+  // })
 
   // auth and api routes
   app.use('/auth', require('./auth'))
