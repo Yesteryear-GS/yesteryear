@@ -21,32 +21,34 @@ const CartTable = props => {
         </tr>
       </thead>
       <tbody>
-        {cart.content.map((item, idx) => {
-          const cartItem = products[item.id - 1]
+        {cart &&
+          cart.content &&
+          cart.content.map((item, idx) => {
+            const cartItem = products[item.id - 1]
 
-          const name = cartItem.name
-          const imgUrl = cartItem.imageUrl
-          const qty = cart.content[idx].itemQuantity
-          const price = cart.content[idx].price
-          const adjPrice = price * qty
+            const name = cartItem.name
+            const imgUrl = cartItem.imageUrl
+            const qty = cart.content[idx].itemQuantity
+            const price = cart.content[idx].price
+            const adjPrice = price * qty
 
-          return (
-            <tr key={'cart-item-' + item.id}>
-              <td>{name}</td>
-              <td>
-                <img className="cart-thumbnail" src={imgUrl} />
-              </td>
-              <td>{qty}</td>
-              <td>{formatPrice(price)}</td>
-              <td>{formatPrice(adjPrice)}</td>
-              <td>
-                <Button>
-                  <i className="material-icons">remove_shopping_cart</i>
-                </Button>
-              </td>
-            </tr>
-          )
-        })}
+            return (
+              <tr key={'cart-item-' + item.id}>
+                <td>{name}</td>
+                <td>
+                  <img className="cart-thumbnail" src={imgUrl} />
+                </td>
+                <td>{qty}</td>
+                <td>{formatPrice(price)}</td>
+                <td>{formatPrice(adjPrice)}</td>
+                <td>
+                  <Button>
+                    <i className="material-icons">remove_shopping_cart</i>
+                  </Button>
+                </td>
+              </tr>
+            )
+          })}
       </tbody>
     </table>
   )

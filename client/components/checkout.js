@@ -17,11 +17,11 @@ class Checkout extends Component {
     return (
       <>
         <h2>Checkout</h2>
-      {cart && cart.content && <CartTable
-          cart={this.props.currentCart}
-          products={this.props.products}
-        />}
-        <SubmitPayment cart={this.props.currentCart} />
+        {cart &&
+          cart.content && (
+            <CartTable cart={cart} products={this.props.products} />
+          )}
+        <SubmitPayment cart={cart} />
       </>
     )
   }
