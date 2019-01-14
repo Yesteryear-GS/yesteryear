@@ -24,8 +24,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('ssss', req.body)
-    const cart = await Order.update(
+    await Order.update(
       {isCart: false},
       {
         where: {

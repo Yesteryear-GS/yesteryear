@@ -12,9 +12,7 @@ class SubmitPayment extends React.Component {
   clickHandler = async cart => {
     try {
       cart.preventDefault()
-      console.log('props', this.props)
       const {data} = await axios.post('/api/orders', this.props.cart)
-      console.log('data', data)
       store.dispatch(removeCart())
     } catch (error) {
       console.error(error)
