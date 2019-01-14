@@ -26,8 +26,13 @@ export const getCart = () => {
   return async dispatch => {
     try {
       const userId = store.getState().user.id
-      const {data} = await axios.get('/api/users/' + userId + '/cart')
-      dispatch(gotCart(data))
+      if (userId) {
+        const {data} = await axios.get('/api/users/' + userId + '/cart')
+        dispatch(gotCart(data))
+      } else {
+        const data = JSON.parse(localStorage.getItem('cart'))
+        dispatch(gotCart(data))
+      }
     } catch (error) {
       console.error(error)
     }
