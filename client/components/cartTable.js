@@ -6,7 +6,7 @@ function formatPrice(priceInt) {
 }
 
 const CartTable = props => {
-  const {cart, products} = props
+  const {cart, products, isUser} = props
 
   return (
     <table>
