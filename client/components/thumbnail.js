@@ -39,7 +39,9 @@ class Thumbnail extends React.Component {
   render() {
     return (
       <div className="product">
-        <img src={this.props.product.imageUrl} className="images" />
+        <div className="imgContainer">
+          <img src={this.props.product.imageUrl} className="images" />
+        </div>
         <p>{this.props.product.name}</p>
         <p>Price: ${(this.props.product.price / 100).toFixed(2)}</p>
         <Button onClick={this.clickHandler}>Add to cart</Button>
