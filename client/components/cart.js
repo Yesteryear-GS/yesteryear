@@ -22,7 +22,7 @@ class Cart extends Component {
 
   render() {
     const cart = this.props.userId
-      ? this.props.cart.content[0]
+      ? this.props.cart.content && this.props.cart.content[0]
       : this.props.cart
     return (
       <>
