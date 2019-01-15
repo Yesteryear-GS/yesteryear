@@ -2,8 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import store from '../store'
 import removeCart from '../store/cart'
-
-import ConfirmationPage from './confirmationPage'
 import {Link} from 'react-router-dom'
 
 import {connect} from 'react-redux'

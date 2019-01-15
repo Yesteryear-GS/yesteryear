@@ -31,7 +31,7 @@ router.get('/:id', isAuthenticated, async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAuthenticated, async (req, res, next) => {
   try {
     await Order.update(
       {isCart: false},
