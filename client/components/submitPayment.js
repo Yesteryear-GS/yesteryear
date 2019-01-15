@@ -52,7 +52,9 @@ class SubmitPayment extends React.Component {
           </div>
           <div className="right-half">
             <input name="card-exp-month" className="card-input-short" />
+
             <p id="slash-for-date">/</p>
+
             <input name="card-exp-year" className="card-input-short" />
           </div>
         </div>
@@ -69,7 +71,9 @@ class SubmitPayment extends React.Component {
         </div>
 
         <div className="form-row">
+
           <button type="submit" id="submit-payment" onClick={this.clickHandler}>
+
             Submit Payment
           </button>
         </div>
