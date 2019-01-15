@@ -2,8 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import store from '../store'
 import removeCart from '../store/cart'
-import {connect} from 'react-redux'
 
+import ConfirmationPage from './confirmationPage'
+import {Link} from 'react-router-dom'
+
+import {connect} from 'react-redux'
 class SubmitPayment extends React.Component {
   constructor(props) {
     super(props)
@@ -76,10 +79,8 @@ class SubmitPayment extends React.Component {
         </div>
 
         <div className="form-row">
-
           <button type="submit" id="submit-payment" onClick={this.clickHandler}>
-
-            Submit Payment
+            <Link to="/confirmation">Submit Payment</Link>
           </button>
         </div>
       </form>
