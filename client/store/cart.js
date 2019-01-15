@@ -2,8 +2,7 @@ import axios from 'axios'
 import store from '../store/index'
 
 const initialState = {
-  content: [],
-  count: 0
+  content: []
 }
 
 const GOT_CART = 'GOT_CART'

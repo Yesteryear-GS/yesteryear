@@ -77,12 +77,12 @@ td {
 #logo {
   width: 25%;
   height: 25%;
-  padding-left: 2vw;
+  padding-left: 3vw;
 }
 
 #navbar > nav {
   text-align: center;
-  width: 20vw;
+  width: 30vw;
 }
 
 #navbar > a {
@@ -164,6 +164,9 @@ h3 {
   padding-left: 10px;
 }
 
+#quantity-dropdown {
+  border: 2px solid black;
+}
 .underlined {
   padding-bottom: 2vh;
   text-decoration: underline;

@@ -6,7 +6,13 @@ import axios from 'axios'
 class Thumbnail extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {itemAmount: 1}
     this.clickHandler = this.clickHandler.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(evt) {
+    this.setState({itemAmount: evt.target.value})
   }
 
   async clickHandler() {
@@ -21,13 +27,13 @@ class Thumbnail extends React.Component {
       cart.forEach(item => {
         if (item.id === this.props.product.id) {
           itemFound = true
-          item.itemQuantity += 1
+          item.itemQuantity += Number(this.state.itemAmount)
         }
       })
       if (!itemFound) {
         cart.push({
           id: this.props.product.id,
-          itemQuantity: 1,
+          itemQuantity: Number(this.state.itemAmount),
           price: this.props.product.price
         })
       }
@@ -39,7 +45,7 @@ class Thumbnail extends React.Component {
 
       const itemToAdd = {
         id: product.id,
-        itemQuantity: 1,
+        itemQuantity: Number(this.state.itemAmount),
         price: product.price
       }
 
@@ -57,7 +63,11 @@ class Thumbnail extends React.Component {
         let itemFound = false
         currentCart.forEach(item => {
           if (!itemFound && item.id === itemToAdd.id) {
-            item.itemQuantity++
+            if (this.handleChange) {
+              item.itemQuantity += Number(this.state.itemAmount)
+            } else {
+              item.itemQuantity = 1
+            }
             itemFound = true
           }
         })
@@ -79,6 +89,17 @@ class Thumbnail extends React.Component {
           <strong>{this.props.product.name}</strong>
         </p>
         <p>Price: ${(this.props.product.price / 100).toFixed(2)}</p>
+        <select
+          onChange={this.handleChange}
+          name="quantity-dropdown"
+          id="quantity-dropdown"
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
         <Button onClick={this.clickHandler}>
           Add to cart{' '}
           <i className="material-icons button-icon">add_shopping_cart</i>
