@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import AllProducts from './all-products'
+import {Link} from 'react-router-dom'
+import OrderHistory from './orderHistory'
 
 /**
  * COMPONENT
@@ -11,7 +13,12 @@ export const UserHome = props => {
   const {email, isUser} = props
   return (
     <div>
-      {isUser && <h3>Welcome, {email}</h3>}
+      {isUser && (
+        <>
+          <h3>Welcome, {email}</h3>
+          <Link to="/order-history">Order History</Link>
+        </>
+      )}
       <div id="home">
         <section id="carousel">
           <img src="./images/cover.png" />
