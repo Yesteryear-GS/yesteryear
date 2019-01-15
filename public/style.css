@@ -18,6 +18,9 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
+  font-size: 1.2em;
+  font-weight: 850;
+  color: black;
 }
 
 form div {
@@ -65,7 +68,8 @@ td {
   align-items: center;
   width: 100%;
   height: auto;
-  background-color: white;
+  background: #2980b9; /* fallback for old browsers */
+  background: linear-gradient(to top, #ffffffe0, #90cfe6, #1abfd1);
 }
 
 #logo {
@@ -84,7 +88,7 @@ td {
 }
 
 #main-body {
-  padding-top: 0;
+  padding: 10px 0px 10px 0px;
   background-color: white;
   width: 90%;
   margin: 10% 5% 10% 5%;
@@ -97,10 +101,8 @@ td {
 }
 
 #carousel img {
-  width: 80%;
-  padding-top: 2%;
-  padding-right: 10%;
-  padding-left: 10%;
+  width: 55%;
+  padding: 5% 10% 5% 10%;
   align-self: center;
 }
 
@@ -111,13 +113,6 @@ td {
   width: 80%;
 }
 
-.imgContainer {
-  border: 10px solid #fdf384;
-  background-color: white;
-  margin: 20px;
-  width: 220px;
-  height: 220px;
-}
 .images {
   display: block;
   margin: auto;
@@ -141,7 +136,7 @@ td {
 }
 
 h3 {
-  font-size: 5vh;
+  font-size: 3.5vh;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -159,7 +154,8 @@ h3 {
 .product-thumb {
   flex: 1;
   padding: 5vh 3vw;
-  width: 30vw;
+  width: 65vw;
+  height: 40vh;
 }
 
 .button-icon {

@@ -14,7 +14,7 @@ export const UserHome = props => {
       {isUser && <h3>Welcome, {email}</h3>}
       <div id="home">
         <section id="carousel">
-          <img src="./images/temp_img.jpg" />
+          <img src="./images/cover.png" />
         </section>
         <div id="container">
           <div id="menu">
