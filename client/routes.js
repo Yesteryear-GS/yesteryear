@@ -7,6 +7,7 @@ import {me} from './store'
 import Cart from './components/cart'
 import Checkout from './components/checkout'
 import {ConfirmationPage} from './components/confirmationPage'
+import OrderHistory from './components/orderHistory'
 
 /**
  * COMPONENT
@@ -33,6 +34,7 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
+              <Route path="/order-history" component={OrderHistory} />
             </Switch>
           )}
           {/* Routes placed here are available to all visitors */}

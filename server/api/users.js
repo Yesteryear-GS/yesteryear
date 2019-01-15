@@ -72,7 +72,7 @@ router.get('/:id/order-history', isAuthenticated, async (req, res, next) => {
         isCart: false
       }
     })
-    res.send(orderHistory)
+    res.json(orderHistory)
   } catch (error) {
     next(error)
   }
