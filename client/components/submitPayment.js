@@ -2,9 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import store from '../store'
 import removeCart from '../store/cart'
+
 import ConfirmationPage from './confirmationPage'
 import {Link} from 'react-router-dom'
 
+import {connect} from 'react-redux'
 class SubmitPayment extends React.Component {
   constructor(props) {
     super(props)
@@ -14,8 +16,12 @@ class SubmitPayment extends React.Component {
   clickHandler = async cart => {
     try {
       cart.preventDefault()
-      const {data} = await axios.post('/api/orders', this.props.cart)
-      store.dispatch(removeCart())
+      if (this.props.user) {
+        const {data} = await axios.post('/api/orders', this.props.cart)
+        store.dispatch(removeCart())
+      } else {
+        localStorage.removeItem('cart')
+      }
     } catch (error) {
       console.error(error)
     }
@@ -82,4 +88,10 @@ class SubmitPayment extends React.Component {
   }
 }
 
-export default SubmitPayment
+const mapStateToProps = state => {
+  return {
+    user: state.user.id
+  }
+}
+
+export default connect(mapStateToProps)(SubmitPayment)
