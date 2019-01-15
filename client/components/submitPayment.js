@@ -23,33 +23,55 @@ class SubmitPayment extends React.Component {
     return (
       <form action="/charge" method="post" id="payment-form">
         <div className="form-row">
-          <div>
-            <label htmlFor="card-number">Credit or debit card number</label>
-            <input name="card-number" />
+          <div className="left-half">
+            <label htmlFor="card-number" className="form-label">
+              Credit or debit card number:{' '}
+            </label>
           </div>
-
-          <div id="card-element">
-            <label htmlFor="card-name">Name on card</label>
-            <input name="card-name" />
+          <div className="right-half">
+            <input name="card-number" className="card-input" />
           </div>
-          <div id="card-element">
-            <label htmlFor="card-exp-month">Expiration Month</label>
-            <input name="card-exp-month" />
-          </div>
-          <div id="card-element">
-            <label htmlFor="card-exp-year">Expiration Year</label>
-            <input name="card-exp-year" />
-          </div>
-          <div id="card-element">
-            <label htmlFor="card-cvv">CVV</label>
-            <input name="card-cvv" />
-          </div>
-
-          <div id="card-errors" role="alert" />
         </div>
-        <button type="submit" onClick={this.clickHandler}>
-          Submit Payment
-        </button>
+
+        <div className="form-row">
+          <div className="left-half">
+            <label htmlFor="card-name" className="form-label">
+              Name on card:{' '}
+            </label>
+          </div>
+          <div className="right-half">
+            <input name="card-name" className="card-input" />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="left-half">
+            <label htmlFor="card-exp-year" className="form-label">
+              Expiration Date (MM/YY):{' '}
+            </label>
+          </div>
+          <div className="right-half">
+            <input name="card-exp-month" className="card-input-short" />
+            <input name="card-exp-year" className="card-input-short" />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="left-half">
+            <label htmlFor="card-cvv" className="form-label">
+              CVV:{' '}
+            </label>
+          </div>
+          <div className="right-half">
+            <input name="card-cvv" className="card-input-short" />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <button type="submit" onClick={this.clickHandler}>
+            Submit Payment
+          </button>
+        </div>
       </form>
     )
   }

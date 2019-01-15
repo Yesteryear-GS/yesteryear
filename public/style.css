@@ -170,3 +170,48 @@ h3 {
 p {
   font-family: 'Quicksand', sans-serif;
 }
+
+#payment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.left-half {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+.right-half {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  flex-grow: 1;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.form-label {
+  margin-right: 8px;
+  text-align: right;
+}
+
+.card-input {
+  width: 105px;
+}
+
+.card-input-short {
+  width: 50px;
+}
