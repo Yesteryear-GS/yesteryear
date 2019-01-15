@@ -31,18 +31,22 @@ router.get('/:id', isAuthenticated, async (req, res, next) => {
   }
 })
 
-router.post('/', isAuthenticated, async (req, res, next) => {
-  try {
-    await Order.update(
-      {isCart: false},
-      {
-        where: {
-          userId: req.body.userId,
-          isCart: true
+router.post(
+  '/',
+  async (req, res, next) => {
+    try {
+      await Order.update(
+        {isCart: false},
+        {
+          where: {
+            userId: req.body.userId,
+            isCart: true
+          }
         }
-      }
-    )
-  } catch (error) {
-    next(error)
-  }
-})
+      )
+    } catch (error) {
+      next(error)
+    }
+  },
+  isAuthenticated
+)
