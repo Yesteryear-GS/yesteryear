@@ -13,6 +13,8 @@ a {
 
 label {
   display: block;
+  font-family: 'Quicksand', sans-serif;
+  color: #1abfd1;
 }
 
 nav a {
@@ -210,8 +212,35 @@ p {
 
 .card-input {
   width: 105px;
+  border: 1px solid #2b2;
+  border-radius: 4px;
+  color: #28d;
+}
+
+.card-input:focus {
+  outline: none;
+  border-color: #2bd;
 }
 
 .card-input-short {
   width: 50px;
+  border: 1px solid #2b2;
+  border-radius: 4px;
+  color: #2bd;
+}
+
+.card-input-short:focus {
+  outline: none;
+  border-color: #2bd;
+}
+
+#slash-for-date {
+  margin: 0 4px;
+}
+
+#submit-payment {
+  background-color: #8f8;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Quicksand', sans-serif;
 }
