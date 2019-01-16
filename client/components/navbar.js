@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {removeCart, updateCartCount} from '../store/cart'
+import {removeCart} from '../store/cart'
 
 const Navbar = ({handleClick, isLoggedIn, cart}) => (
   <div id="fixNav">
@@ -20,15 +20,15 @@ const Navbar = ({handleClick, isLoggedIn, cart}) => (
               Logout
             </a>
             <Link to="/cart">
+              Cart {''}
               <span id="cartTotal">
                 {cart && cart.content && cart.content[0]
                   ? cart.content[0].content.reduce((accum, val) => {
                       let count = (accum += val.itemQuantity)
                       return count
                     }, 0)
-                  : ''}{' '}
+                  : ''}
               </span>
-              Cart
             </Link>
           </>
         ) : (
@@ -37,15 +37,15 @@ const Navbar = ({handleClick, isLoggedIn, cart}) => (
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/cart">
+              Cart{''}
               <span id="cartTotal">
                 {cart && cart.content
                   ? cart.content.reduce((accum, val) => {
                       let count = (accum += val.itemQuantity)
                       return count
                     }, 0)
-                  : ''}{' '}
+                  : ''}
               </span>
-              Cart
             </Link>
           </>
         )}
@@ -69,9 +69,6 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
       dispatch(removeCart())
-    },
-    updateCartCount() {
-      dispatch(updateCartCount())
     }
   }
 }

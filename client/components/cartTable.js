@@ -6,7 +6,7 @@ function formatPrice(priceInt) {
 }
 
 const CartTable = props => {
-  const {cart, products, isUser} = props
+  const {cart, products} = props
 
   return (
     <table>
@@ -38,7 +38,9 @@ const CartTable = props => {
                 <td>
                   <img className="cart-thumbnail" src={imgUrl} />
                 </td>
+
                 <td>{qty}</td>
+
                 <td>{formatPrice(price)}</td>
                 <td>{formatPrice(adjPrice)}</td>
                 <td>
