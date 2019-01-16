@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Button from '@material-ui/core/Button'
 import AllProducts from './all-products'
 import {Link} from 'react-router-dom'
-import OrderHistory from './orderHistory'
 
 /**
  * COMPONENT
@@ -25,11 +23,7 @@ export const UserHome = props => {
         </section>
         <div id="container">
           <div id="menu">
-            <Button className="buttons">Show All</Button>
-            <Button className="buttons">Snacks</Button>
-            <Button className="buttons">Technology</Button>
-            <Button className="buttons">Pop Culture</Button>
-            <Button className="buttons">Toys/Games</Button>
+            <h3 className="showProducts">All Products</h3>
           </div>
           <div id="products">
             <AllProducts />

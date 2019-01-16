@@ -127,10 +127,10 @@ td {
   display: flex;
 }
 
-.buttons {
+.showProducts {
   justify-content: center;
-  border: 5px solid gray;
-  width: 50%;
+  padding-bottom: 20px;
+  width: 100%;
 }
 
 #products {

@@ -67,9 +67,7 @@ const cartReducer = (state = initialState, action) => {
       return {...state, content: action.cart}
     case DELETE_CART:
       cart = state.content
-      console.log('CART IN STORE', cart)
       newCart = cart.filter(item => item.id !== action.item.id)
-      console.log('newbebwbw', newCart, 'action', action.item)
       return {...state, content: newCart}
     default:
       return state
