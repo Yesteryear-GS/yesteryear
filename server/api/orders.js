@@ -12,15 +12,14 @@ const isAuthenticated = async (req, res, next) => {
   }
 }
 
-// router.get('/', isAuthenticated, async (req, res, next) => {
-//   try {
-//     console.log('look here', req.body)
-//     const orders = await Order.findAll()
-//     res.json(orders)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+router.get('/', isAuthenticated, async (req, res, next) => {
+  try {
+    const orders = await Order.findAll()
+    res.json(orders)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.get('/:id', isAuthenticated, async (req, res, next) => {
   try {

@@ -264,7 +264,6 @@ async function seed() {
     userId: 3
   })
 
-  // console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
 // We've separated the `seed` function from the `runSeed` function.
