@@ -3,7 +3,6 @@ import axios from 'axios'
 import store from '../store'
 import removeCart from '../store/cart'
 import {Link} from 'react-router-dom'
-
 import {connect} from 'react-redux'
 class SubmitPayment extends React.Component {
   constructor(props) {
@@ -15,7 +14,10 @@ class SubmitPayment extends React.Component {
     try {
       cart.preventDefault()
       if (this.props.user) {
-        const {data} = await axios.post('/api/orders', this.props.cart)
+        const {data} = await axios.post(
+          '/api/orders/' + this.props.cart.id,
+          this.props.cart
+        )
         store.dispatch(removeCart())
       } else {
         localStorage.removeItem('cart')

@@ -12,15 +12,15 @@ const isAuthenticated = async (req, res, next) => {
   }
 }
 
-router.get('/', isAuthenticated, async (req, res, next) => {
-  try {
-    console.log('look here', req.body)
-    const orders = await Order.findAll()
-    res.json(orders)
-  } catch (error) {
-    next(error)
-  }
-})
+// router.get('/', isAuthenticated, async (req, res, next) => {
+//   try {
+//     console.log('look here', req.body)
+//     const orders = await Order.findAll()
+//     res.json(orders)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 
 router.get('/:id', isAuthenticated, async (req, res, next) => {
   try {
@@ -31,22 +31,18 @@ router.get('/:id', isAuthenticated, async (req, res, next) => {
   }
 })
 
-router.post(
-  '/',
-  async (req, res, next) => {
-    try {
-      await Order.update(
-        {isCart: false},
-        {
-          where: {
-            userId: req.body.userId,
-            isCart: true
-          }
+router.post('/:id', isAuthenticated, async (req, res, next) => {
+  try {
+    await Order.update(
+      {isCart: false},
+      {
+        where: {
+          userId: req.body.userId,
+          isCart: true
         }
-      )
-    } catch (error) {
-      next(error)
-    }
-  },
-  isAuthenticated
-)
+      }
+    )
+  } catch (error) {
+    next(error)
+  }
+})
